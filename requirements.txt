@@ -18,7 +18,7 @@ celery==5.3.4
 redis==5.0.1
 
 # AI Providers
-anthropic==0.7.7
+anthropic>=0.18.0
 # openai==1.6.1  # Uncomment if using OpenAI
 # google-generativeai==0.3.2  # Uncomment if using Google Gemini
 

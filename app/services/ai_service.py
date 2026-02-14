@@ -16,6 +16,13 @@ class AIService:
     
     def __init__(self):
         """Initialize Anthropic client"""
+        # Initialize settings first
+        self.model = settings.AI_MODEL
+        self.max_tokens = settings.AI_MAX_TOKENS
+        self.temperature = settings.AI_TEMPERATURE
+        self.timeout = settings.AI_TIMEOUT
+        
+        # Then initialize client
         api_key = settings.ANTHROPIC_API_KEY
         if not api_key or api_key == "your-api-key-here":
             logger.warning(
@@ -27,11 +34,6 @@ class AIService:
         else:
             self.client = anthropic.Anthropic(api_key=api_key)
             logger.info(f"AIService initialized with model: {self.model}")
-        
-        self.model = settings.AI_MODEL
-        self.max_tokens = settings.AI_MAX_TOKENS
-        self.temperature = settings.AI_TEMPERATURE
-        self.timeout = settings.AI_TIMEOUT
     
     def analyze_ticket(self, title: str, description: str, customer_name: str = None) -> Dict[str, Any]:
         """
